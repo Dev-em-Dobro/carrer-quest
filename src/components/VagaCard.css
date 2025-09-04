@@ -1,0 +1,149 @@
+.vaga-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--border-radius-xl);
+  padding: var(--spacing-lg);
+  transition: all 0.25s ease;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.vaga-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-brand-primary), var(--color-brand-light));
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.vaga-card:hover {
+  border-color: var(--color-border-hover);
+  background: var(--color-bg-tertiary);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.vaga-card:hover::before {
+  opacity: 1;
+}
+
+.vaga-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-md);
+  gap: var(--spacing-sm);
+}
+
+.vaga-card__titulo {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  margin: 0;
+  flex: 1;
+}
+
+.vaga-card__data {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-normal);
+  background: var(--color-brand-100);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-md);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.vaga-card__empresa,
+.vaga-card__localizacao,
+.vaga-card__salario {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  margin-bottom: var(--spacing-sm);
+}
+
+.vaga-card__salario {
+  color: var(--color-brand-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.vaga-card__descricao {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--spacing-sm);
+  border-left: 3px solid var(--color-brand-100);
+  padding-left: var(--spacing-sm);
+  background: var(--color-bg-secondary);
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius-md);
+}
+
+.vaga-card__icon {
+  color: var(--color-brand-primary);
+  flex-shrink: 0;
+}
+
+.vaga-card__footer {
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid var(--color-border-default);
+}
+
+.vaga-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  color: var(--color-brand-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  transition: color 0.25s ease;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-md);
+  background: var(--color-brand-50);
+}
+
+.vaga-card__link:hover {
+  color: var(--color-brand-light);
+  background: var(--color-brand-100);
+}
+
+.vaga-card__external-icon {
+  transition: transform 0.25s ease;
+}
+
+.vaga-card__link:hover .vaga-card__external-icon {
+  transform: translate(2px, -2px);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .vaga-card {
+    padding: var(--spacing-md);
+  }
+  
+  .vaga-card__header {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+  
+  .vaga-card__data {
+    align-self: flex-start;
+  }
+  
+  .vaga-card__titulo {
+    font-size: var(--font-size-base);
+  }
+}
