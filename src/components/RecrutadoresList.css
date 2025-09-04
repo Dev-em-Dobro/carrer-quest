@@ -1,0 +1,211 @@
+.recrutadores-list {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+}
+
+.recrutadores-list__header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.recrutadores-list__title {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  margin: 0 0 var(--spacing-sm) 0;
+  background: linear-gradient(135deg, var(--color-text-primary), var(--color-brand-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.recrutadores-list__subtitle {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-base);
+  margin: 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.recrutadores-list__table-container {
+  background: var(--color-bg-primary);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: var(--spacing-xl);
+  overflow-x: auto;
+}
+
+.recrutadores-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.recrutadores-table thead {
+  background: var(--color-bg-secondary);
+  border-bottom: 2px solid var(--color-brand-primary);
+}
+
+.recrutadores-table th {
+  text-align: left;
+  padding: var(--spacing-md);
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.recrutadores-table tbody tr {
+  border-bottom: 1px solid var(--color-border-default);
+  transition: background 0.2s ease;
+}
+
+.recrutadores-table tbody tr:hover {
+  background: var(--color-bg-hover);
+}
+
+.recrutadores-table td {
+  padding: var(--spacing-md);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-base);
+}
+
+.empresa-badge {
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: linear-gradient(135deg, var(--color-brand-100), var(--color-brand-200));
+  color: var(--color-brand-primary);
+  border-radius: var(--border-radius-sm);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
+}
+
+.nome-cell {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+.cargo-cell {
+  font-size: var(--font-size-sm);
+}
+
+.email-link {
+  color: var(--color-brand-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.email-link:hover {
+  color: var(--color-brand-secondary);
+  text-decoration: underline;
+}
+
+.linkedin-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: #0077B5;
+  color: white;
+  text-decoration: none;
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-sm);
+  transition: background 0.2s ease;
+}
+
+.linkedin-link:hover {
+  background: #005885;
+}
+
+.not-available {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  font-style: italic;
+}
+
+.recrutadores-list__footer {
+  text-align: center;
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--color-border-default);
+}
+
+.recrutadores-list__info {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .recrutadores-table {
+    font-size: var(--font-size-sm);
+  }
+  
+  .recrutadores-table th,
+  .recrutadores-table td {
+    padding: var(--spacing-sm);
+  }
+}
+
+@media (max-width: 768px) {
+  .recrutadores-list {
+    padding: var(--spacing-md);
+  }
+  
+  .recrutadores-list__title {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .recrutadores-table thead {
+    display: none;
+  }
+  
+  .recrutadores-table tbody tr {
+    display: block;
+    margin-bottom: var(--spacing-md);
+    background: var(--color-bg-primary);
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+  }
+  
+  .recrutadores-table td {
+    display: block;
+    padding: var(--spacing-xs) 0;
+    border: none;
+  }
+  
+  .recrutadores-table td:before {
+    content: attr(data-label);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-size: var(--font-size-xs);
+    text-transform: uppercase;
+  }
+  
+  .empresa-cell:before { content: "Empresa"; }
+  .nome-cell:before { content: "Nome do Contato"; }
+  .cargo-cell:before { content: "Cargo"; }
+  .email-cell:before { content: "Email"; }
+  .linkedin-cell:before { content: "LinkedIn"; }
+}
+
+@media (max-width: 480px) {
+  .recrutadores-list {
+    padding: var(--spacing-sm);
+  }
+  
+  .recrutadores-list__title {
+    font-size: var(--font-size-xl);
+  }
+  
+  .recrutadores-list__subtitle {
+    font-size: var(--font-size-sm);
+  }
+}

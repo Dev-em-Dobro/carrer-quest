@@ -16,13 +16,13 @@ class AdzunaService {
     }
   }
 
-  async buscarVagas(filtros: FiltrosVaga, pagina: number = 1): Promise<VagaResponse> {
+  async buscarVagas(filtros: FiltrosVaga, pagina: number = 1, vagasPorPagina: number = 10): Promise<VagaResponse> {
     try {
       const country = 'br';
       const params = new URLSearchParams({
         app_id: this.appId,
         app_key: this.appKey,
-        results_per_page: '20'
+        results_per_page: vagasPorPagina.toString()
       });
 
       if (filtros.palavrasChave.length > 0) {

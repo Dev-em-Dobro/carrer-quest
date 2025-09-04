@@ -1,9 +1,15 @@
+import { useState } from 'react';
+import Header from './components/Header';
 import FiltrosVagas from './components/FiltrosVagas';
 import VagasList from './components/VagasList';
+import RecrutadoresList from './components/RecrutadoresList';
 import type { Vaga } from './types/vaga';
 import './App.css';
+import './components/Header.css';
 
 function App() {
+  const [activeTab, setActiveTab] = useState<'vagas' | 'recrutadores'>('vagas');
+  
   const handleVagaClick = (vaga: Vaga) => {
     console.log('Vaga clicada:', vaga);
     // Aqui podemos implementar funcionalidades futuras como:
@@ -14,22 +20,18 @@ function App() {
 
   return (
     <div className="app">
-      <header className="app__header">
-        <div className="app__container">
-          <h1 className="app__title">
-            <span className="app__title-main">Career Quest</span>
-            <span className="app__title-sub">Sistema de Recrutamento Inteligente</span>
-          </h1>
-          <p className="app__description">
-            Encontre as melhores oportunidades em programação com inteligência artificial
-          </p>
-        </div>
-      </header>
+      <Header activeTab={activeTab} onTabChange={setActiveTab} />
 
       <main className="app__main">
         <div className="app__container">
-          <FiltrosVagas />
-          <VagasList onVagaClick={handleVagaClick} />
+          {activeTab === 'vagas' ? (
+            <>
+              <FiltrosVagas />
+              <VagasList onVagaClick={handleVagaClick} />
+            </>
+          ) : (
+            <RecrutadoresList />
+          )}
         </div>
       </main>
 

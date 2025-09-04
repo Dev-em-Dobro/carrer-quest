@@ -9,7 +9,19 @@ interface VagasListProps {
 }
 
 export default function VagasList({ onVagaClick }: VagasListProps) {
-  const { vagas, loading, error, total, buscarVagas } = useVagas();
+  const { 
+    vagas, 
+    loading, 
+    error, 
+    total, 
+    paginaAtual, 
+    totalPaginas, 
+    vagasPorPagina,
+    buscarVagas, 
+    proximaPagina, 
+    paginaAnterior,
+    buscarPagina 
+  } = useVagas();
 
   useEffect(() => {
     buscarVagas();
@@ -102,8 +114,58 @@ export default function VagasList({ onVagaClick }: VagasListProps) {
 
       {vagas.length > 0 && (
         <div className="vagas-list__footer">
+          <div className="vagas-list__pagination">
+            <button
+              className="pagination-button"
+              onClick={paginaAnterior}
+              disabled={paginaAtual === 1 || loading}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Anterior
+            </button>
+
+            <div className="pagination-pages">
+              {Array.from({ length: Math.min(5, totalPaginas) }, (_, i) => {
+                let pageNumber;
+                if (totalPaginas <= 5) {
+                  pageNumber = i + 1;
+                } else if (paginaAtual <= 3) {
+                  pageNumber = i + 1;
+                } else if (paginaAtual >= totalPaginas - 2) {
+                  pageNumber = totalPaginas - 4 + i;
+                } else {
+                  pageNumber = paginaAtual - 2 + i;
+                }
+                
+                return (
+                  <button
+                    key={pageNumber}
+                    className={`pagination-page ${pageNumber === paginaAtual ? 'active' : ''}`}
+                    onClick={() => buscarPagina(pageNumber)}
+                    disabled={loading}
+                  >
+                    {pageNumber}
+                  </button>
+                );
+              })}
+            </div>
+
+            <button
+              className="pagination-button"
+              onClick={proximaPagina}
+              disabled={paginaAtual === totalPaginas || loading}
+            >
+              Próxima
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
+          </div>
+
           <p className="vagas-list__info">
-            Mostrando {vagas.length} de {total} vagas disponíveis
+            Mostrando {((paginaAtual - 1) * vagasPorPagina) + 1} - {Math.min(paginaAtual * vagasPorPagina, total)} de {total} vagas
           </p>
         </div>
       )}
