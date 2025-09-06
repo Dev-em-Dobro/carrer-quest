@@ -27,6 +27,7 @@
   --color-bg-tertiary: #172122;
   --color-bg-card: rgba(26, 26, 26, 0.8);
   --color-bg-overlay: rgba(0, 0, 0, 0.5);
+  --color-bg-hover: rgba(26, 26, 26, 0.6);
 
   /* Text Colors */
   --color-text-primary: #fff6e9;
