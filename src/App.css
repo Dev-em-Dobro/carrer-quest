@@ -27,13 +27,13 @@
 .app__hero-title {
   font-size: var(--font-size-4xl);
   font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
   margin: 0 0 var(--spacing-lg) 0;
   line-height: 1.2;
-  background: linear-gradient(135deg, var(--color-primary-400) 0%, var(--color-primary-600) 100%);
+  background: linear-gradient(135deg, var(--color-brand-light) 0%, var(--color-brand-primary) 50%, var(--color-brand-dark) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  color: var(--color-brand-primary); /* Fallback para navegadores que não suportam background-clip */
 }
 
 .app__hero-subtitle {
