@@ -26,6 +26,15 @@ function App() {
         <div className="app__container">
           {activeTab === 'vagas' ? (
             <>
+              <section className="app__hero">
+                <h1 className="app__hero-title">
+                  Encontre sua próxima oportunidade em programação
+                </h1>
+                <p className="app__hero-subtitle">
+                  Descubra milhares de vagas de desenvolvimento, frontend, backend, mobile e muito mais. 
+                  Use nossos filtros inteligentes para encontrar a posição perfeita para seu perfil.
+                </p>
+              </section>
               <FiltrosVagas />
               <VagasList onVagaClick={handleVagaClick} />
             </>
