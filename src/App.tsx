@@ -1,15 +1,11 @@
-import { useState } from 'react';
 import Header from './components/Header';
 import FiltrosVagas from './components/FiltrosVagas';
 import VagasList from './components/VagasList';
-import RecrutadoresList from './components/RecrutadoresList';
 import type { Vaga } from './types/vaga';
 import './App.css';
 import './components/Header.css';
 
 function App() {
-  const [activeTab, setActiveTab] = useState<'vagas' | 'recrutadores'>('vagas');
-  
   const handleVagaClick = (vaga: Vaga) => {
     console.log('Vaga clicada:', vaga);
     // Aqui podemos implementar funcionalidades futuras como:
@@ -20,34 +16,28 @@ function App() {
 
   return (
     <div className="app">
-      <Header activeTab={activeTab} onTabChange={setActiveTab} />
+      <Header />
 
       <main className="app__main">
         <div className="app__container">
-          {activeTab === 'vagas' ? (
-            <>
-              <section className="app__hero">
-                <h1 className="app__hero-title">
-                  Encontre sua próxima oportunidade em programação
-                </h1>
-                <p className="app__hero-subtitle">
-                  Descubra milhares de vagas de desenvolvimento, frontend, backend, mobile e muito mais. 
-                  Use nossos filtros inteligentes para encontrar a posição perfeita para seu perfil.
-                </p>
-              </section>
-              <FiltrosVagas />
-              <VagasList onVagaClick={handleVagaClick} />
-            </>
-          ) : (
-            <RecrutadoresList />
-          )}
+          <section className="app__hero">
+            <h1 className="app__hero-title">
+              Encontre sua próxima oportunidade em programação
+            </h1>
+            <p className="app__hero-subtitle">
+              Descubra milhares de vagas de desenvolvimento, frontend, backend, mobile e muito mais. 
+              Use nossos filtros inteligentes para encontrar a posição perfeita para seu perfil.
+            </p>
+          </section>
+          <FiltrosVagas />
+          <VagasList onVagaClick={handleVagaClick} />
         </div>
       </main>
 
       <footer className="app__footer">
         <div className="app__container">
           <p className="app__footer-text">
-            Desenvolvido com <span className="heart">♥</span> usando React, TypeScript e LinkedIn API
+            Desenvolvido com <span className="heart">♥</span> usando React, TypeScript e Adzuna API
           </p>
         </div>
       </footer>
