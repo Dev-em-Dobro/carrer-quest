@@ -30,14 +30,14 @@ class AdzunaService {
         
         // Estratégia específica para níveis júnior e estagiário
         if (primeiraPalavra === 'júnior' || primeiraPalavra === 'junior') {
-          // Para júnior: buscar especificamente por desenvolvedor junior
-          params.append('what', 'desenvolvedor junior programador junior');
+          // Para júnior: buscar com termos simples e efetivos
+          params.append('what', 'desenvolvedor junior');
         } else if (primeiraPalavra === 'estagiário' || primeiraPalavra === 'estagiario') {
-          // Para estagiário: buscar especificamente por estagiário desenvolvedor
-          params.append('what', 'estagiário desenvolvedor programador');
+          // Para estagiário: buscar com termos simples
+          params.append('what', 'desenvolvedor estagiário');
         } else {
-          // Para outras tecnologias: combinar com termos de desenvolvedor
-          params.append('what', `desenvolvedor ${primeiraPalavra} programador ${primeiraPalavra}`);
+          // Para outras tecnologias: combinar desenvolvedor + tecnologia
+          params.append('what', `desenvolvedor ${primeiraPalavra}`);
         }
       } else {
         // Se não tiver palavras-chave, buscar desenvolvimento geral
