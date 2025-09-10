@@ -30,8 +30,8 @@ class AdzunaService {
         
         // Estratégia específica para níveis júnior e estagiário
         if (primeiraPalavra === 'júnior' || primeiraPalavra === 'junior') {
-          // Para júnior: usar what_phrase para maior precisão (460 vagas)
-          params.append('what_phrase', 'desenvolvedor júnior');
+          // Para júnior: usar title_only para buscar apenas no título
+          params.append('title_only', 'júnior');
         } else if (primeiraPalavra === 'estagiário' || primeiraPalavra === 'estagiario') {
           // Para estagiário: usar title_only para busca específica
           params.append('title_only', 'estagiário');
