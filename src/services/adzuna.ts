@@ -25,24 +25,29 @@ class AdzunaService {
         results_per_page: vagasPorPagina.toString()
       });
 
+      // Sempre filtrar por categoria de TI/Tecnologia
+      params.append('category', 'it-jobs');
+      
+      // Sempre excluir vagas de outras áreas
+      params.append('what_exclude', 'vendas marketing administrativo recursos humanos financeiro contabilidade');
+
       if (filtros.palavrasChave.length > 0) {
         const primeiraPalavra = filtros.palavrasChave[0].toLowerCase();
         
         // Estratégia específica para níveis júnior e estagiário
         if (primeiraPalavra === 'júnior' || primeiraPalavra === 'junior') {
-          // Para júnior: usar title_only para buscar apenas no título
-          params.append('title_only', 'júnior');
+          // Para júnior: buscar no título mas garantindo que seja de tech
+          params.append('what', 'desenvolvedor júnior developer junior programador');
         } else if (primeiraPalavra === 'estagiário' || primeiraPalavra === 'estagiario') {
-          // Para estagiário: usar title_only para busca específica
-          params.append('title_only', 'estagiário');
+          // Para estagiário: buscar no título mas garantindo que seja de tech
+          params.append('what', 'estagiário desenvolvedor developer programador');
         } else {
-          // Para outras tecnologias: usar busca combinada
-          params.append('what', 'desenvolvedor programador');
-          params.append('what_and', primeiraPalavra);
+          // Para outras tecnologias: sempre incluir termos de tech + tecnologia específica
+          params.append('what', `desenvolvedor programador developer ${primeiraPalavra}`);
         }
       } else {
         // Se não tiver palavras-chave, buscar desenvolvimento geral
-        params.append('what', 'desenvolvedor programador software');
+        params.append('what', 'desenvolvedor programador developer programmer software');
       }
 
       if (filtros.localizacao) {
