@@ -26,37 +26,37 @@ class AdzunaService {
       });
 
       if (filtros.palavrasChave.length > 0) {
-        // Verificar se tem junior OU estagiário nas palavras-chave selecionadas
-        const temJunior = filtros.palavrasChave.some(p => 
-          p.toLowerCase() === 'junior' || p.toLowerCase() === 'júnior'
-        );
-        const temEstagiario = filtros.palavrasChave.some(p => 
-          p.toLowerCase() === 'estagiário' || p.toLowerCase() === 'estagiario'
-        );
+        // Sempre incluir termo base para garantir que seja da área de tecnologia
+        params.append('what', 'desenvolvedor');
         
-        // Filtrar palavras que não são junior/estagiário (tecnologias)
+        // Separar níveis (junior/estagiário) de tecnologias
+        const niveis = filtros.palavrasChave.filter(p => {
+          const palavra = p.toLowerCase();
+          return palavra === 'junior' || palavra === 'júnior' || 
+                 palavra === 'estagiário' || palavra === 'estagiario';
+        });
+        
         const tecnologias = filtros.palavrasChave.filter(p => {
           const palavra = p.toLowerCase();
           return palavra !== 'junior' && palavra !== 'júnior' && 
                  palavra !== 'estagiário' && palavra !== 'estagiario';
         });
         
-        // Estratégia para maximizar resultados
-        if (temJunior && temEstagiario) {
-          // Se ambos estão selecionados, priorizar junior (que retorna mais vagas: 1164 vs 183)
-          params.append('what', 'desenvolvedor junior');
-        } else if (temJunior) {
-          // Só junior
-          params.append('what', 'desenvolvedor junior');
-        } else if (temEstagiario) {
-          // Só estagiário
-          params.append('what', 'desenvolvedor estagiário');
-        } else if (tecnologias.length > 0) {
-          // Só tecnologias
-          params.append('what', `desenvolvedor ${tecnologias.join(' ')}`);
-        } else {
-          // Fallback geral
-          params.append('what', 'desenvolvedor programador');
+        // Se tem níveis selecionados, usar what_or para combinar os resultados
+        if (niveis.length > 0) {
+          // Normalizar termos para a busca
+          const termosNiveis = niveis.map(p => {
+            const palavra = p.toLowerCase();
+            if (palavra === 'júnior') return 'junior';
+            if (palavra === 'estagiario') return 'estagiário';
+            return palavra;
+          });
+          params.append('what_or', termosNiveis.join(' '));
+        }
+        
+        // Se tem tecnologias, adicionar como filtro adicional
+        if (tecnologias.length > 0) {
+          params.append('what_and', tecnologias.join(' '));
         }
       } else {
         // Se não tiver palavras-chave, buscar desenvolvimento geral
