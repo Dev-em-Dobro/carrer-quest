@@ -41,22 +41,23 @@ class AdzunaService {
                  palavra !== 'estagiário' && palavra !== 'estagiario';
         });
         
-        // Construir a busca baseada no que foi selecionado
-        let termoBusca = 'desenvolvedor';
-        
-        if (temJunior) {
-          termoBusca += ' junior';
+        // Estratégia para maximizar resultados
+        if (temJunior && temEstagiario) {
+          // Se ambos estão selecionados, priorizar junior (que retorna mais vagas: 1164 vs 183)
+          params.append('what', 'desenvolvedor junior');
+        } else if (temJunior) {
+          // Só junior
+          params.append('what', 'desenvolvedor junior');
+        } else if (temEstagiario) {
+          // Só estagiário
+          params.append('what', 'desenvolvedor estagiário');
+        } else if (tecnologias.length > 0) {
+          // Só tecnologias
+          params.append('what', `desenvolvedor ${tecnologias.join(' ')}`);
+        } else {
+          // Fallback geral
+          params.append('what', 'desenvolvedor programador');
         }
-        
-        if (temEstagiario) {
-          termoBusca += ' estagiário';
-        }
-        
-        if (tecnologias.length > 0) {
-          termoBusca += ' ' + tecnologias.join(' ');
-        }
-        
-        params.append('what', termoBusca);
       } else {
         // Se não tiver palavras-chave, buscar desenvolvimento geral
         params.append('what', 'desenvolvedor programador developer software');
