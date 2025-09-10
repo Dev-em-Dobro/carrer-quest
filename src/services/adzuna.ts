@@ -26,19 +26,37 @@ class AdzunaService {
       });
 
       if (filtros.palavrasChave.length > 0) {
-        const primeiraPalavra = filtros.palavrasChave[0].toLowerCase();
+        // Verificar se tem junior OU estagiário nas palavras-chave selecionadas
+        const temJunior = filtros.palavrasChave.some(p => 
+          p.toLowerCase() === 'junior' || p.toLowerCase() === 'júnior'
+        );
+        const temEstagiario = filtros.palavrasChave.some(p => 
+          p.toLowerCase() === 'estagiário' || p.toLowerCase() === 'estagiario'
+        );
         
-        // Estratégia específica para níveis júnior e estagiário
-        if (primeiraPalavra === 'júnior' || primeiraPalavra === 'junior') {
-          // Para júnior: buscar com termos simples e efetivos
-          params.append('what', 'desenvolvedor junior');
-        } else if (primeiraPalavra === 'estagiário' || primeiraPalavra === 'estagiario') {
-          // Para estagiário: buscar com termos simples
-          params.append('what', 'desenvolvedor estagiário');
-        } else {
-          // Para outras tecnologias: combinar desenvolvedor + tecnologia
-          params.append('what', `desenvolvedor ${primeiraPalavra}`);
+        // Filtrar palavras que não são junior/estagiário (tecnologias)
+        const tecnologias = filtros.palavrasChave.filter(p => {
+          const palavra = p.toLowerCase();
+          return palavra !== 'junior' && palavra !== 'júnior' && 
+                 palavra !== 'estagiário' && palavra !== 'estagiario';
+        });
+        
+        // Construir a busca baseada no que foi selecionado
+        let termoBusca = 'desenvolvedor';
+        
+        if (temJunior) {
+          termoBusca += ' junior';
         }
+        
+        if (temEstagiario) {
+          termoBusca += ' estagiário';
+        }
+        
+        if (tecnologias.length > 0) {
+          termoBusca += ' ' + tecnologias.join(' ');
+        }
+        
+        params.append('what', termoBusca);
       } else {
         // Se não tiver palavras-chave, buscar desenvolvimento geral
         params.append('what', 'desenvolvedor programador developer software');
