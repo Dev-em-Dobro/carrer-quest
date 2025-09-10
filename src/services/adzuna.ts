@@ -25,23 +25,23 @@ class AdzunaService {
         results_per_page: vagasPorPagina.toString()
       });
 
-      // Sempre garantir que seja da área de tecnologia
-      params.append('what', 'desenvolvedor programador developer software engineer');
-
       if (filtros.palavrasChave.length > 0) {
         const primeiraPalavra = filtros.palavrasChave[0].toLowerCase();
         
         // Estratégia específica para níveis júnior e estagiário
         if (primeiraPalavra === 'júnior' || primeiraPalavra === 'junior') {
-          // Para júnior: buscar especificamente por junior
-          params.append('what_and', 'júnior junior');
+          // Para júnior: buscar especificamente por desenvolvedor junior
+          params.append('what', 'desenvolvedor junior programador junior');
         } else if (primeiraPalavra === 'estagiário' || primeiraPalavra === 'estagiario') {
-          // Para estagiário: buscar especificamente por estagiário
-          params.append('what_and', 'estagiário');
+          // Para estagiário: buscar especificamente por estagiário desenvolvedor
+          params.append('what', 'estagiário desenvolvedor programador');
         } else {
-          // Para outras tecnologias: adicionar a tecnologia específica
-          params.append('what_and', primeiraPalavra);
+          // Para outras tecnologias: combinar com termos de desenvolvedor
+          params.append('what', `desenvolvedor ${primeiraPalavra} programador ${primeiraPalavra}`);
         }
+      } else {
+        // Se não tiver palavras-chave, buscar desenvolvimento geral
+        params.append('what', 'desenvolvedor programador developer software');
       }
 
       if (filtros.localizacao) {
