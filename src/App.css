@@ -2,7 +2,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: var(--color-bg-primary);
+  background: #000000;
 }
 
 .app__container {
@@ -12,7 +12,6 @@
   width: 100%;
 }
 
-
 .app__main {
   flex: 1;
   padding: var(--spacing-3xl) 0;
@@ -20,41 +19,76 @@
 
 .app__hero {
   text-align: center;
-  margin-bottom: var(--spacing-4xl);
-  padding: var(--spacing-2xl) 0;
+  margin-bottom: 4rem;
+  padding: 3rem 0;
 }
 
-.app__hero-title {
-  font-size: var(--font-size-4xl);
-  font-weight: var(--font-weight-bold);
-  margin: 0 0 var(--spacing-lg) 0;
-  line-height: 1.2;
-  background: linear-gradient(135deg, var(--color-brand-light) 0%, var(--color-brand-primary) 50%, var(--color-brand-dark) 100%);
+.app__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  margin-bottom: 2.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+}
+
+.app__badge-icon {
+  font-size: 1rem;
+}
+
+.app__badge-text {
+  background: linear-gradient(90deg, #0CF2A0 0%, #00D9A3 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  color: var(--color-brand-primary); /* Fallback para navegadores que não suportam background-clip */
+  font-weight: 600;
+}
+
+.app__hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.1;
+  color: #ffffff;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.app__hero-highlight {
+  background: linear-gradient(90deg, #0CF2A0 0%, #00D9A3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
 }
 
 .app__hero-subtitle {
-  font-size: var(--font-size-lg);
-  color: var(--color-text-muted);
+  font-size: 1.125rem;
+  color: #9ca3af;
   margin: 0;
-  line-height: 1.6;
-  max-width: 600px;
+  line-height: 1.7;
+  max-width: 700px;
   margin: 0 auto;
+  font-weight: 400;
 }
 
 .app__footer {
-  background: var(--color-bg-secondary);
-  border-top: 1px solid var(--color-border-default);
+  background: rgba(0, 0, 0, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
   padding: var(--spacing-lg) 0;
   margin-top: auto;
+  backdrop-filter: blur(10px);
 }
 
 .app__footer-text {
   text-align: center;
-  color: var(--color-text-muted);
+  color: rgba(156, 163, 175, 0.7);
   font-size: var(--font-size-sm);
   margin: 0;
 }
@@ -81,6 +115,10 @@
   .app__container {
     padding: 0 var(--spacing-md);
   }
+  
+  .app__hero-title {
+    font-size: 2.75rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -92,12 +130,23 @@
     padding: var(--spacing-2xl) 0;
   }
   
+  .app__hero {
+    padding: 2rem 0;
+    margin-bottom: 3rem;
+  }
+  
+  .app__badge {
+    font-size: 0.8125rem;
+    padding: 0.4rem 1rem;
+    margin-bottom: 2rem;
+  }
+  
   .app__hero-title {
-    font-size: var(--font-size-3xl);
+    font-size: 2.25rem;
   }
   
   .app__hero-subtitle {
-    font-size: var(--font-size-base);
+    font-size: 1rem;
     padding: 0 var(--spacing-md);
   }
 }
@@ -108,15 +157,21 @@
   }
   
   .app__hero {
-    margin-bottom: var(--spacing-2xl);
-    padding: var(--spacing-lg) 0;
+    margin-bottom: 2rem;
+    padding: 1.5rem 0;
+  }
+  
+  .app__badge {
+    font-size: 0.75rem;
+    padding: 0.375rem 0.875rem;
+    margin-bottom: 1.5rem;
   }
   
   .app__hero-title {
-    font-size: var(--font-size-2xl);
+    font-size: 1.75rem;
   }
   
   .app__hero-subtitle {
-    font-size: var(--font-size-sm);
+    font-size: 0.9375rem;
   }
 }

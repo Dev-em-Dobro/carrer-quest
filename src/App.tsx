@@ -21,14 +21,22 @@ function App() {
       <main className="app__main">
         <div className="app__container">
           <section className="app__hero">
+            <div className="app__badge">
+              <span className="app__badge-icon">✨</span>
+              <span className="app__badge-text">Powered by DevQuest AI</span>
+            </div>
+            
             <h1 className="app__hero-title">
-              Encontre sua próxima oportunidade em programação
+              Encontre sua próxima{' '}
+              <span className="app__hero-highlight">oportunidade em programação</span>
             </h1>
+            
             <p className="app__hero-subtitle">
-              Descubra milhares de vagas de desenvolvimento, frontend, backend, mobile e muito mais. 
-              Use nossos filtros inteligentes para encontrar a posição perfeita para seu perfil.
+              Nossos agentes de IA especializados estão aqui para acelerar sua busca por vagas.
+              Filtre por nível de experiência, tecnologias e localização para encontrar a posição ideal.
             </p>
           </section>
+          
           <FiltrosVagas />
           <VagasList onVagaClick={handleVagaClick} />
         </div>

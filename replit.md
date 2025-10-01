@@ -16,17 +16,28 @@ A modern React + TypeScript application for searching programming jobs. The appl
 - **Styling**: CSS modules with dark theme and professional design system
 - **Data Flow**: Zustand store → API service → React components
 
-## Recent Changes (Sept 5, 2025)
-- Installed all project dependencies via npm
-- Configured Vite for Replit environment (host: 0.0.0.0, port: 5000, allowedHosts: true)
-- Set up workflow for frontend development server
-- Configured deployment settings for production (autoscale)
-- Application running successfully with API credential error (expected)
+## Recent Changes (Oct 1, 2025)
+### Design Redesign - DevQuest AI Style
+- Redesigned layout based on DevQuest AI website
+- Changed color scheme from purple to green/cyan (#0CF2A0)
+- Added "Powered by DevQuest AI" badge with sparkle icon
+- Pure black background (#000000) with glass-morphism effects
+- Updated typography using Inter font exclusively
+- Hero section with green highlighted text
+- Modern badge design with blur effects
+
+### API Improvements
+- Fixed search functionality using `what_or` parameter for OR logic
+- Properly combines junior + estagiário searches (~1,915 results)
+- Separate handling for job levels and technologies
+- Uses `what_and` for technology filters
 
 ## API Integration
-The application uses the Adzuna API for job search functionality. Requires:
-- VITE_ADZUNA_APP_ID
-- VITE_ADZUNA_APP_KEY
+The application uses the Adzuna API for job search functionality:
+- **Base search**: `what=desenvolvedor` (ensures tech jobs)
+- **Levels**: `what_or=junior estagiário` (OR logic)
+- **Tech**: `what_and=react python` (AND logic)
+- **Credentials**: VITE_ADZUNA_APP_ID, VITE_ADZUNA_APP_KEY
 
 ## Deployment
 - **Type**: Autoscale (stateless web application)
@@ -35,7 +46,9 @@ The application uses the Adzuna API for job search functionality. Requires:
 - **Port**: 5000
 
 ## User Preferences
-- Professional, modern interface
+- DevQuest AI inspired design
 - Portuguese language support
-- Dark theme with purple accent colors
+- Pure black theme with green/cyan accents (#0CF2A0)
+- Inter font family
+- Glass-morphism and blur effects
 - Responsive design for all devices
