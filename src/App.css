@@ -42,7 +42,7 @@
 }
 
 .app__badge-text {
-  background: linear-gradient(90deg, #2B7FFF 0%, #2B7FFF 100%);
+   background: rgb(180 12 242 / var(--tw-text-opacity, 1));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -61,7 +61,7 @@
 }
 
 .app__hero-highlight {
-  background: linear-gradient(90deg, hsl(211, 100%, 66%) 0%, hsl(211, 100%, 66%) 100%);
+  background: rgb(180 12 242 / var(--tw-text-opacity, 1));
 
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
